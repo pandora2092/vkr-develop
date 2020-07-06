@@ -1,0 +1,31 @@
+<div class="contact-wrapper">
+  <form action="" #contactForm="ngForm" class="contact-form">
+    <h2 class="h2 contact-form__h2">Форма обратной связи</h2>
+
+    <mat-form-field class="width-100" class="contact-form__field">
+      <mat-label>Имя</mat-label>
+      <input matInput type="text" required [(ngModel)]="name" name="name" required>
+      <mat-error>Введите имя</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-100" class="contact-form__field">
+      <mat-label>E-mail</mat-label>
+      <input matInput type="text" required [(ngModel)]="email" name="email" required #emailref="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+      <mat-error [hidden]="!emailref.errors?.pattern">
+        Некорректный e-mail
+      </mat-error>
+      <mat-error [hidden]="!emailref.errors?.required">
+        Введите e-mail
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-100" class="contact-form__field">
+      <mat-label>Ваше сообщение</mat-label>
+      <textarea matTextareaAutosize matAutosizeMinRows=10 matInput type="text" required [(ngModel)]="body" name="body" required></textarea>
+      <mat-error>Введите текст сообщения</mat-error>
+    </mat-form-field>
+
+    <button [disabled]="contactForm.invalid" mat-raised-button color="primary" class="btn" type="submit" (click)="sendEmail()"> Отправить </button>
+  </form>
+
+</div>

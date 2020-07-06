@@ -1,0 +1,23 @@
+<div class="login-wrapper">
+  <form action="" #authForm="ngForm" class="authForm">
+    <h2 class="authForm__h2">Войти в систему</h2>
+    <mat-form-field class="width-100" hideRequiredMarker="true" class="authForm__field">
+      <mat-label>E-mail</mat-label>
+      <input matInput type="text" required [(ngModel)]="email" name="email" #emailref="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+      <mat-error [hidden]="!emailref.errors?.pattern">
+        Некорректный e-mail
+      </mat-error>
+      <mat-error [hidden]="!emailref.errors?.required">
+        Введите e-mail
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-100" hideRequiredMarker="true" class="authForm__field">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="text" required [(ngModel)]="password" name="password">
+      <mat-error>Введите пароль</mat-error>
+    </mat-form-field>
+
+    <button [disabled]="authForm.invalid" mat-raised-button color="primary" class="btn" type="submit" (click)="auth()"> Войти </button>
+  </form>
+</div>

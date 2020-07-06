@@ -1,0 +1,14 @@
+{
+  "host": "localhost",
+  "port": "33060",
+  "userid": "root",
+  "password": "4647187Cc",
+  "schema": "nik",
+  "schemaUser": "users",
+  "collection": "list3",
+  "jwt": "dev-jwt",
+  "email_from": "angara2092@yandex.ru",
+  "email_to": "garaga2092@yandex.ru",
+  "base_url": "http://localhost/",
+  "sendGrid_api": "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"
+}

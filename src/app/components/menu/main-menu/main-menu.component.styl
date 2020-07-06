@@ -1,0 +1,39 @@
+.main-menu
+  list-style-type none
+  margin 0
+  padding 0
+  display flex
+  justify-content center
+  align-items center
+  width 100%
+  height 60px
+  line-height 60px
+  background-color #906d4d
+  color #fff
+  &__icon
+    font-size 40px
+    height 40px
+    width 40px
+  &__li
+    padding 0
+    flex 1
+    text-align center
+    transition all .3s ease-out
+    &:last-child
+      display flex
+      align-items center
+      justify-content center
+      line-height 1
+    &:hover
+      background-color rgba(255,255,255,.1)
+      &:last-child:hover
+        background-color transparent
+  &__a
+    text-decoration none
+    color #fff
+    height 100%
+    width 100%
+    display block
+
+.main-menu .active
+  background-color rgba(255,255,255,.1)

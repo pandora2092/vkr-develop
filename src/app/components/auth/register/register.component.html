@@ -1,0 +1,14 @@
+<form action="" #registerForm="ngForm" class="registerForm">
+  <h2>Зарегистрироваться</h2>
+  <mat-form-field appearance="fill" class="width-100" hideRequiredMarker="true" class="registerForm__field">
+    <mat-label>E-mail</mat-label>
+    <input matInput type="text" required [(ngModel)]="email" name="email">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="width-100" hideRequiredMarker="true" class="registerForm__field">
+    <mat-label>Пароль</mat-label>
+    <input matInput type="text" required [(ngModel)]="password" name="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="btn" type="submit" (click)="register()"> Зарегистрироваться </button>
+</form>
