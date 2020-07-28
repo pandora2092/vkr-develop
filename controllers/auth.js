@@ -1,6 +1,6 @@
 const mysql = require('@mysql/xdevapi');
-const config = require("config");
-const bcryptjs = require("bcryptjs");
+const config = require('config');
+const bcryptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 
 exports.register = function (user, cb) {

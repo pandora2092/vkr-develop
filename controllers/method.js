@@ -1,29 +1,29 @@
 const mysql = require('@mysql/xdevapi');
-const config = require("config");
+const config = require('config');
 
 exports.getAllItems = function (cb) {
-    mysql.getSession({
-      host: config.host,
-      port: config.port,
-      dbUser: config.userid,
-      dbPassword: config.password
-    }).then(function (session) {
-      const schema = session.getSchema(config.schema);
-      const coll = schema.getCollection(config.collection);
-      const docs = [];
-      coll.find().execute( news => {
-        docs.push(news);
-      })
-      .then(function (result) {
-        if (docs.length > 0) {
-          cb(null, docs)
-          session.close();
-        } else {
-          cb('No data found', null);
-          session.close();
-        }
-      });
+  mysql.getSession({
+    host: config.host,
+    port: config.port,
+    dbUser: config.userid,
+    dbPassword: config.password
+  }).then(function (session) {
+    const schema = session.getSchema(config.schema);
+    const coll = schema.getCollection(config.collection);
+    const docs = [];
+    coll.find().execute( news => {
+      docs.push(news);
+    })
+    .then(function (result) {
+      if (docs.length > 0) {
+        cb(null, docs)
+        session.close();
+      } else {
+        cb('No data found', null);
+        session.close();
+      }
     });
+  });
 }
 
 exports.getAllItemByPage = function (pageNum, pageSize, cb) {
@@ -55,28 +55,28 @@ exports.getAllItemByPage = function (pageNum, pageSize, cb) {
 }
 
 exports.getItemById = function (data, cb) {
-    mysql.getSession({
-      host: config.host,
-      port: config.port,
-      dbUser: config.userid,
-      dbPassword: config.password
-    }).then(function (session) {
-      const schema = session.getSchema(config.schema);
-      const coll = schema.getCollection(config.collection);
-      const docs = [];
-      coll.find(`_id like :_id`).bind('_id', data).execute(news => {
-        docs.push(news);
-      })
-      .then(function (result) {
-        if (docs.length > 0) {
-          cb(null, docs)
-          session.close();
-        } else {
-          cb('No data found', null);
-          session.close();
-        }
-      });
+  mysql.getSession({
+    host: config.host,
+    port: config.port,
+    dbUser: config.userid,
+    dbPassword: config.password
+  }).then(function (session) {
+    const schema = session.getSchema(config.schema);
+    const coll = schema.getCollection(config.collection);
+    const docs = [];
+    coll.find(`_id like :_id`).bind('_id', data).execute(news => {
+      docs.push(news);
+    })
+    .then(function (result) {
+      if (docs.length > 0) {
+        cb(null, docs)
+        session.close();
+      } else {
+        cb('No data found', null);
+        session.close();
+      }
     });
+  });
 }
 
 
@@ -92,7 +92,8 @@ exports.addPost = function (data, cb) {
     coll.add(data)
         .execute()
         .then( updated => {
-          if (updated.getAffectedRowsCount() > 0) {
+          //getAffectedRowsCount
+          if (updated.getAffectedItemsCount() > 0) {
             cb(null, data);
           }
           else {

@@ -5,7 +5,7 @@
   "password": "4647187Cc",
   "schema": "nik",
   "schemaUser": "users",
-  "collection": "list3",
+  "collection": "flags",
   "jwt": "dev-jwt",
   "email_from": "angara2092@yandex.ru",
   "email_to": "garaga2092@yandex.ru",
