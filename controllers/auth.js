@@ -2,6 +2,7 @@ const mysql = require('@mysql/xdevapi');
 const config = require('config');
 const bcryptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+//test
 
 exports.register = function (user, cb) {
   mysql.getSession({
