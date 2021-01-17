@@ -9,7 +9,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
-import { NewsListEffects } from './store/effects/list-news';
+import { CardListEffects } from './store/effects/list-card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthModule } from './components/auth/auth.module';
@@ -19,6 +19,9 @@ import { AuthEffects } from './store/effects/auth';
 import { AdminModule } from './components/admin/admin.module';
 import { ContactEffects } from './store/effects/contact';
 import { ModalsModule } from './components/modals/modals.module';
+import { NewsListEffects } from './store/effects/news';
+import { LogsListEffects } from './store/effects/logs';
+import { httpInterceptorProviders } from './services/http.interceptor.providers';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { ModalsModule } from './components/modals/modals.module';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([
+      CardListEffects,
       NewsListEffects,
+      LogsListEffects,
       AuthEffects,
       ContactEffects
     ]),
@@ -52,7 +57,8 @@ import { ModalsModule } from './components/modals/modals.module';
   ],
   providers: [
     { provide: MatDialogRef, useValue: {}},
-	  { provide: MAT_DIALOG_DATA, useValue: []},
+    { provide: MAT_DIALOG_DATA, useValue: []},
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

@@ -46,6 +46,7 @@ export class AuthEffects {
       .pipe(
         ofType(ActionTypes.ActionLoginSuccess),
         switchMap((action: LoginSuccessAction) => {
+          console.log(action)
             this.apiService.setLocalStorageItem('token', action.payload.accessToken);
             return of(new LoginSuccessRedirectAction(action.payload.redirectUrl));
           }

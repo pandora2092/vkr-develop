@@ -5,11 +5,11 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Observable, of, EMPTY } from 'rxjs';
-import { ListNewsActionTypes, GetAllNewsSuccessAction, GetAllNewsAction, GetAllNewsFailureAction, AddNewsAction, AddNewsSuccessAction, DeleteNewsByIdSuccessAction, DeleteNewsByIdAction, EditNewsByIdAction, EditNewsByIdSuccessAction, GetNewsByIdAction, GetNewsByIdSuccessAction, GetNewsByFieldsAction, GetNewsByFieldsSuccessAction, GetNewsByFieldsSimpleAction, GetNewsByFieldsSimpleSuccessAction} from '../actions/list-news';
+import { ListCardActionTypes, GetAllCardSuccessAction, GetAllCardAction, GetAllCardFailureAction, AddCardAction, AddCardSuccessAction, DeleteCardByIdSuccessAction, DeleteCardByIdAction, EditCardByIdAction, EditCardByIdSuccessAction, GetCardByIdAction, GetCardByIdSuccessAction, GetCardByFieldsAction, GetCardByFieldsSuccessAction, GetCardByFieldsSimpleAction, GetCardByFieldsSimpleSuccessAction} from '../actions/list-card';
 
 
 @Injectable()
-export class NewsListEffects {
+export class CardListEffects {
 
   constructor(
     private actions$: Actions,
@@ -18,33 +18,33 @@ export class NewsListEffects {
     ) {}
 
   @Effect()
-  news$: Observable<Action> = this.actions$
+  card$: Observable<Action> = this.actions$
   .pipe(
-    ofType(ListNewsActionTypes.ActionGetAllNews),
-    switchMap((action: GetAllNewsAction) => {
+    ofType(ListCardActionTypes.ActionGetAllCard),
+    switchMap((action: GetAllCardAction) => {
       return this.apiService
         .getAllItem()
         .pipe(
           map((value: any) => {
-            return new GetAllNewsSuccessAction(value);
+            return new GetAllCardSuccessAction(value);
           }),
           catchError((err) => {
-            return of(new GetAllNewsFailureAction(err));
+            return of(new GetAllCardFailureAction(err));
           })
         );
     })
   );
 
   @Effect()
-  newsAdd$: Observable<Action> = this.actions$
+  cardAdd$: Observable<Action> = this.actions$
   .pipe(
-    ofType(ListNewsActionTypes.ActionAddNews),
-    switchMap((action: AddNewsAction) => {
+    ofType(ListCardActionTypes.ActionAddCard),
+    switchMap((action: AddCardAction) => {
       return this.apiService
         .addItemToTable(action.payload.name, action.payload.code, action.payload.manuscript, action.payload.info, action.payload.bibliography)
         .pipe(
           map((value: any) => {
-            return new AddNewsSuccessAction();
+            return new AddCardSuccessAction();
           }),
           catchError((err) => {
             return EMPTY;
@@ -55,15 +55,15 @@ export class NewsListEffects {
 
 
   @Effect()
-  deleteNews$: Observable<Action> = this.actions$
+  deleteCard$: Observable<Action> = this.actions$
   .pipe(
-    ofType(ListNewsActionTypes.ActionDeleteNewsById),
-    switchMap((action: DeleteNewsByIdAction) => {
+    ofType(ListCardActionTypes.ActionDeleteCardById),
+    switchMap((action: DeleteCardByIdAction) => {
       return this.apiService
         .deteleFromTable(action.payload.id)
         .pipe(
           map((value: any) => {
-            return new DeleteNewsByIdSuccessAction();
+            return new DeleteCardByIdSuccessAction();
           }),
           catchError((err) => {
             return EMPTY;
@@ -73,15 +73,15 @@ export class NewsListEffects {
   );
 
   @Effect()
-  editNews$: Observable<Action> = this.actions$
+  editCard$: Observable<Action> = this.actions$
   .pipe(
-    ofType(ListNewsActionTypes.ActionEditNewsById),
-    switchMap((action: EditNewsByIdAction) => {
+    ofType(ListCardActionTypes.ActionEditCardById),
+    switchMap((action: EditCardByIdAction) => {
       return this.apiService
         .editRow(action.payload.id, action.payload.name, action.payload.code, action.payload.manuscript, action.payload.info, action.payload.bibliography)
         .pipe(
           map((value: any) => {
-            return new EditNewsByIdSuccessAction();
+            return new EditCardByIdSuccessAction();
           }),
           catchError((err) => {
             return EMPTY;
@@ -91,15 +91,15 @@ export class NewsListEffects {
   );
 
   @Effect()
-  getNewsById$: Observable<Action> = this.actions$
+  getCardById$: Observable<Action> = this.actions$
   .pipe(
-    ofType(ListNewsActionTypes.ActionGetNewsById),
-    switchMap((action: GetNewsByIdAction) => {
+    ofType(ListCardActionTypes.ActionGetCardById),
+    switchMap((action: GetCardByIdAction) => {
       return this.apiService
         .getItemById(action.payload.id)
         .pipe(
           map((value: any) => {
-            return new GetNewsByIdSuccessAction(value[0]);
+            return new GetCardByIdSuccessAction(value[0]);
           }),
           catchError((err) => {
             return EMPTY;
@@ -109,15 +109,15 @@ export class NewsListEffects {
   );
 
   @Effect()
-  newsSearch$: Observable<Action> = this.actions$
+  cardSearch$: Observable<Action> = this.actions$
   .pipe(
-    ofType(ListNewsActionTypes.ActionGetNewsByFields),
-    switchMap((action: GetNewsByFieldsAction) => {
+    ofType(ListCardActionTypes.ActionGetCardByFields),
+    switchMap((action: GetCardByFieldsAction) => {
       return this.apiService
         .getItemByFieldSearch(action.payload.name, action.payload.code, action.payload.manuscript, action.payload.info, action.payload.bibliography)
         .pipe(
           map((result: any) => {
-            return new GetNewsByFieldsSuccessAction(result);
+            return new GetCardByFieldsSuccessAction(result);
           }),
           catchError((err) => {
             if (err.status === 404) {
@@ -130,15 +130,15 @@ export class NewsListEffects {
   );
 
   @Effect()
-  newsSearchSimple$: Observable<Action> = this.actions$
+  cardSearchSimple$: Observable<Action> = this.actions$
   .pipe(
-    ofType(ListNewsActionTypes.ActionGetNewsByFieldsSimple),
-    switchMap((action: GetNewsByFieldsSimpleAction) => {
+    ofType(ListCardActionTypes.ActionGetCardByFieldsSimple),
+    switchMap((action: GetCardByFieldsSimpleAction) => {
       return this.apiService
         .getItemByFieldSearchSimple(action.payload.world)
         .pipe(
           map((result: any) => {
-            return new GetNewsByFieldsSimpleSuccessAction(result);
+            return new GetCardByFieldsSimpleSuccessAction(result);
           }),
           catchError((err) => {
             if (err.status === 404) {

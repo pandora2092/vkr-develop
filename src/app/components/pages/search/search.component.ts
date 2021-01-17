@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { GetAllNewsAction, GetNewsByFieldsSimpleAction, GetNewsByFieldsAction } from '../../../store/actions/list-news';
+import { GetAllCardAction, GetCardByFieldsSimpleAction, GetCardByFieldsAction } from '../../../store/actions/list-card';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '../../../store/reducers/list-news';
+import * as fromRoot from '../../../store/reducers/list-card';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -102,7 +102,7 @@ export class SearchComponent implements OnInit {
     );
 
 
-    this.store.dispatch(new GetAllNewsAction());
+    this.store.dispatch(new GetAllCardAction());
   }
 
   public deleteRow(id: any) {
@@ -146,17 +146,17 @@ export class SearchComponent implements OnInit {
   }
 
   public searchSimple() {
-    this.store.dispatch(new GetNewsByFieldsSimpleAction(this.search));
+    this.store.dispatch(new GetCardByFieldsSimpleAction(this.search));
   }
 
   public searchExtend() {
-    this.store.dispatch(new GetNewsByFieldsAction(this.searchName, this.searchCode, this.searchManuscript, this.searchInfo, this.searchBibliography));
+    this.store.dispatch(new GetCardByFieldsAction(this.searchName, this.searchCode, this.searchManuscript, this.searchInfo, this.searchBibliography));
   }
 
   public clearSimple() {
     this.search = '';
     this.countSimpleResult = 0;
-    this.store.dispatch(new GetAllNewsAction());
+    this.store.dispatch(new GetAllCardAction());
   }
 
   public clearExtend() {
@@ -166,7 +166,7 @@ export class SearchComponent implements OnInit {
     this.searchManuscript = '';
     this.searchInfo = '';
     this.searchBibliography = '';
-    this.store.dispatch(new GetAllNewsAction());
+    this.store.dispatch(new GetAllCardAction());
   }
 
   public hintSimple() {

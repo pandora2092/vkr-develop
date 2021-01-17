@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NewsComponent } from './news/news.component';
+import { LogsComponent } from './logs/logs.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NewsComponent } from './news/news.component';
     PageNotFoundComponent,
     SearchComponent,
     MainScreenComponent,
-    NewsComponent
+    NewsComponent,
+    LogsComponent
   ],
   imports: [
     CommonModule,

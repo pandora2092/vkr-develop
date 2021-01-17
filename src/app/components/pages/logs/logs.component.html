@@ -1,0 +1,28 @@
+<section class="logs">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="dateTime">
+        <th mat-header-cell *matHeaderCellDef> Дата </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remoteAddress">
+        <th mat-header-cell *matHeaderCellDef> IP </th>
+        <td mat-cell *matCellDef="let element"> {{element.remoteAddress}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Действие </th>
+        <td mat-cell *matCellDef="let element"> {{element.action}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator  (page)="pageChange($event)" [pageSizeOptions]="[20, 40, 60]" showFirstLastButtons></mat-paginator>
+  </div>
+
+</section>
+

@@ -11,8 +11,8 @@ exports.getAllItems = function (cb) {
     const schema = session.getSchema(config.schema);
     const coll = schema.getCollection(config.collection);
     const docs = [];
-    coll.find().execute( news => {
-      docs.push(news);
+    coll.find().execute( card => {
+      docs.push(card);
     })
     .then(function (result) {
       if (docs.length > 0) {
@@ -39,8 +39,8 @@ exports.getAllItemByPage = function (pageNum, pageSize, cb) {
     coll.find()
       .offset(pageNum)
       .limit(pageSize)
-      .execute( news => {
-      docs.push(news);
+      .execute( card => {
+      docs.push(card);
     })
     .then(function (result) {
       if (docs.length > 0) {
@@ -64,8 +64,8 @@ exports.getItemById = function (data, cb) {
     const schema = session.getSchema(config.schema);
     const coll = schema.getCollection(config.collection);
     const docs = [];
-    coll.find(`_id like :_id`).bind('_id', data).execute(news => {
-      docs.push(news);
+    coll.find(`_id like :_id`).bind('_id', data).execute(card => {
+      docs.push(card);
     })
     .then(function (result) {
       if (docs.length > 0) {
@@ -170,8 +170,8 @@ exports.getItemByFieldSearch = function (data, cb) {
       .bind('manuscript', `%${data.manuscript}%`)
       .bind('info', `%${data.info}%`)
       .bind('bibliography', `%${data.bibliography}%`)
-      .execute(news => {
-      docs.push(news);
+      .execute(card => {
+      docs.push(card);
     })
     .then(function (result) {
       if (docs.length > 0) {
@@ -202,8 +202,8 @@ exports.getItemByFieldSearchSimple = function (data, cb) {
       .bind('manuscript', `%${data.world}%`)
       .bind('info', `%${data.world}%`)
       .bind('bibliography', `%${data.world}%`)
-      .execute(news => {
-      docs.push(news);
+      .execute(card => {
+      docs.push(card);
     })
     .then(function (result) {
       if (docs.length > 0) {

@@ -1,1 +1,8 @@
-<p>news works!</p>
+<section class="news">
+  <div *ngFor="let item of news" class="news__item">
+    <div class="news__data">{{item.timeAdded}}</div>
+    <h2 class="news__h2">{{item.title}}</h2>
+    <div class="news__text">{{item.body}}</div>
+    <a [routerLink]="item._id" class="news__link">Подробнее</a>
+  </div>
+</section>

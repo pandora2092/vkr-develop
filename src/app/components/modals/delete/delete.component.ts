@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { DeleteNewsByIdAction } from 'src/app/store/actions/list-news';
+import { DeleteCardByIdAction } from 'src/app/store/actions/list-card';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -19,7 +19,7 @@ export class DeleteComponent implements OnInit {
   }
 
   public deleteRow() {
-    this.store.dispatch(new DeleteNewsByIdAction(this.data.id));
+    this.store.dispatch(new DeleteCardByIdAction(this.data.id));
   }
 
 }

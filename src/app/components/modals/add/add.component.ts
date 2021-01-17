@@ -1,4 +1,4 @@
-import { AddNewsAction } from '../../../store/actions/list-news';
+import { AddCardAction } from '../../../store/actions/list-card';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 
@@ -22,8 +22,8 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
-  public addNews() {
-    this.store.dispatch(new AddNewsAction(this.addName, this.addCode, this.addManuscript, this.addInfo, this.addBibliography));
+  public addCard() {
+    this.store.dispatch(new AddCardAction(this.addName, this.addCode, this.addManuscript, this.addInfo, this.addBibliography));
   }
 
 }

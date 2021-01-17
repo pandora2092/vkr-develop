@@ -11,6 +11,8 @@ const passport = require('passport');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const contactRouter = require('./routes/contact');
+const newsRouter = require('./routes/news');
+const logsRouter = require('./routes/logs');
 
 const app = express();
 
@@ -41,6 +43,8 @@ app.use(stylus.middleware({
 app.use('/api/search', indexRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/contact', contactRouter);
+app.use('/api/news', newsRouter);
+app.use('/api/logs', logsRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use('/', express.static(path.join(__dirname, 'dist', 'angular')));

@@ -61,12 +61,13 @@ exports.login = function (user, cb) {
     })
     .then(function (result) {
       if (docs.length > 0) {
+
         const passwordResult = bcryptjs.compareSync(user.password, docs[0].password);
         if (passwordResult) {
           const token = jwt.sign({
             email: docs[0].email,
             userId: docs[0]._id,
-          }, config.jwt, {expiresIn: 60 * 60});
+          }, config.jwt, { expiresIn: 604800 });
           cb(null, token, 200);
         } else {
           cb('No user found', null, 401);

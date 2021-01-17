@@ -13,6 +13,14 @@ export class ApiService {
     return this.http.get(`/api/search/all`);
   }
 
+  public getAllNews() {
+    return this.http.get(`/api/news/all`);
+  }
+
+  public getAllLogs() {
+    return this.http.get(`/api/logs/all`);
+  }
+
   public getAllItemByPage(pageNum, pageSize) {
     const params = new HttpParams()
       .set('pageNum', pageNum)

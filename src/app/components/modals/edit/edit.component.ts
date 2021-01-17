@@ -1,7 +1,7 @@
-import { EditNewsByIdAction, GetNewsByIdAction } from '../../../store/actions/list-news';
+import { EditCardByIdAction, GetCardByIdAction } from '../../../store/actions/list-card';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '../../../store/reducers/list-news';
+import * as fromRoot from '../../../store/reducers/list-card';
 import { MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
@@ -38,11 +38,11 @@ export class EditComponent implements OnInit {
       }
     );
 
-    this.store.dispatch(new GetNewsByIdAction(this.data.id));
+    this.store.dispatch(new GetCardByIdAction(this.data.id));
   }
 
-  public editRow(id: any) {
-    this.store.dispatch(new EditNewsByIdAction(id, this.editName, this.editCode, this.editManuscript, this.editInfo, this.editBibliography));
+  public editCard(id: any) {
+    this.store.dispatch(new EditCardByIdAction(id, this.editName, this.editCode, this.editManuscript, this.editInfo, this.editBibliography));
   }
 
 }
